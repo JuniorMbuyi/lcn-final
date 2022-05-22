@@ -20,10 +20,6 @@ app.use(compression());
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
-app.use('/', (req, res) => {
-    const file = `${__dirname}/public/${req.params.filename}`;
-    res.sendFile(file);
-})
 app.use('/:filename', (req, res) => {
     const file = `${__dirname}/public/${req.params.filename}`;
     if(fs.existsSync(file)){
@@ -31,6 +27,11 @@ app.use('/:filename', (req, res) => {
     }else {
         res.sendFile(`${__dirname}/public/index.html`)
     }
+});
+
+app.use('/', (req, res) => {
+    const file = `${__dirname}/public/${req.params.filename}`;
+    res.sendFile(file);
 });
 
 module.exports = app;
