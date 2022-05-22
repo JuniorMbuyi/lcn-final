@@ -93,7 +93,7 @@ app.use('/:filename', (req, res) => {
 });
 
 app.use('/', (req, res) => {
-    const file = `${__dirname}/public/index.html`;
+    const file = `/index.html`;
     res.redirect(file);
 });
 
